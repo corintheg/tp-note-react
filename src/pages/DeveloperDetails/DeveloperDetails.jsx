@@ -18,7 +18,6 @@ const DeveloperDetails = () => {
             try {
                 setLoading(true);
 
-                // Fetch developer details
                 const devRes = await fetch(
                     `https://api.rawg.io/api/developers/${id}?key=${API_KEY}`
                 );
@@ -30,7 +29,6 @@ const DeveloperDetails = () => {
 
                 setDeveloper(devData);
 
-                // Fetch games by this developer
                 const gamesRes = await fetch(
                     `https://api.rawg.io/api/games?key=${API_KEY}&developers=${id}`
                 );

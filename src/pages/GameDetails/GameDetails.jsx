@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
+import { useCollection } from "../../context/CollectionContext";
 import styles from "./GameDetails.module.css";
 
 const GameDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { addToCollection, removeFromCollection, isInCollection, getGameFromCollection, updateGameStatus } = useCollection();
     const [game, setGame] = useState(null);
     const [screenshots, setScreenshots] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -63,11 +65,55 @@ const GameDetails = () => {
         );
     }
 
+    const inCollection = isInCollection(parseInt(id));
+    const gameInCollection = getGameFromCollection(parseInt(id));
+
+    const handleCollectionToggle = () => {
+        if (inCollection) {
+            removeFromCollection(parseInt(id));
+        } else {
+            addToCollection(game);
+        }
+    };
+
+    const handleStatusChange = (e) => {
+        updateGameStatus(parseInt(id), e.target.value);
+    };
+
+    const statusLabels = {
+        to_play: "À jouer",
+        playing: "En cours",
+        completed: "Terminé",
+        abandoned: "Abandonné"
+    };
+
     return (
         <div className={styles.container}>
-            <button onClick={() => navigate(-1)} className={styles.backButton}>
-                ← Retour
-            </button>
+            <div className={styles.headerButtons}>
+                <button onClick={() => navigate(-1)} className={styles.backButton}>
+                    ← Retour
+                </button>
+                <div className={styles.collectionActions}>
+                    <button
+                        onClick={handleCollectionToggle}
+                        className={`${styles.collectionButton} ${inCollection ? styles.inCollection : ""}`}
+                    >
+                        {inCollection ? "✓ Dans ma collection" : "+ Ajouter à ma collection"}
+                    </button>
+                    {inCollection && (
+                        <select
+                            value={gameInCollection?.status || "to_play"}
+                            onChange={handleStatusChange}
+                            className={styles.statusSelect}
+                        >
+                            <option value="to_play">{statusLabels.to_play}</option>
+                            <option value="playing">{statusLabels.playing}</option>
+                            <option value="completed">{statusLabels.completed}</option>
+                            <option value="abandoned">{statusLabels.abandoned}</option>
+                        </select>
+                    )}
+                </div>
+            </div>
 
             <div className={styles.gameHeader}>
                 <img
@@ -135,9 +181,13 @@ const GameDetails = () => {
                             <h2 className={styles.sectionTitle}>Développeurs</h2>
                             <div className={styles.tags}>
                                 {game.developers.map((dev) => (
-                                    <span key={dev.id} className={styles.tag}>
+                                    <Link
+                                        key={dev.id}
+                                        to={`/developers/${dev.id}`}
+                                        className={styles.tagLink}
+                                    >
                                         {dev.name}
-                                    </span>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
