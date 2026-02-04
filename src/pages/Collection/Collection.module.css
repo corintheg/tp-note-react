@@ -1,0 +1,146 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.stats {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #718096;
+    margin: 0;
+    text-align: center;
+}
+
+.filters {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.filterButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: white;
+    color: #718096;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filterButton:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+.filterButton.active {
+    background: #1a202c;
+    color: white;
+    border-color: #1a202c;
+}
+
+.gamesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+    .gamesGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .gamesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gamesGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.gameWrapper {
+    position: relative;
+}
+
+.gameActions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.statusSelect {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: white;
+    color: #1a202c;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.statusSelect:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+.statusSelect:focus {
+    border-color: #1a202c;
+}
+
+.removeButton {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: white;
+    color: #e53e3e;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1;
+}
+
+.removeButton:hover {
+    background: #e53e3e;
+    color: white;
+    border-color: #e53e3e;
+}
+
+.noResults {
+    text-align: center;
+    padding: 3rem;
+    color: #718096;
+    font-size: 1rem;
+}

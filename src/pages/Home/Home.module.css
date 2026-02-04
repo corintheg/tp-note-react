@@ -1,0 +1,99 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+
+.pageTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #1a202c;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.pageSubtitle {
+    text-align: center;
+    color: #718096;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.noResults {
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem 0;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.noResults p {
+    font-size: 1rem;
+    color: #718096;
+    margin: 0;
+}
+
+.gamesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .gamesGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .gamesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gamesGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+.loading span {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+.errorMsg {
+    color: #e53e3e;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #feb2b2;
+}
