@@ -12,8 +12,12 @@ const Home = () => {
     const [genre, setGenre] = useState("");
     const [platform, setPlatform] = useState("");
     const [ordering, setOrdering] = useState("-added");
+    const [page, setPage] = useState(1);
+    const [totalCount, setTotalCount] = useState(0);
 
     const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
+    const pageSize = 20;
+    const totalPages = Math.ceil(totalCount / pageSize);
 
     const fetchGames = async () => {
         try {
@@ -21,7 +25,9 @@ const Home = () => {
 
             const params = new URLSearchParams({
                 key: API_KEY,
-                ordering: ordering
+                ordering: ordering,
+                page: page,
+                page_size: pageSize
             });
 
             if (search) params.append('search', search);
@@ -43,6 +49,7 @@ const Home = () => {
             }
 
             setGames(data.results);
+            setTotalCount(data.count || 0);
             setLoading(false);
         } catch (error) {
             console.error('API Error:', error);
@@ -52,12 +59,16 @@ const Home = () => {
     };
 
     useEffect(() => {
+        setPage(1);
+    }, [search, genre, platform, ordering]);
+
+    useEffect(() => {
         const timer = setTimeout(() => {
             fetchGames();
         }, 500);
 
         return () => clearTimeout(timer);
-    }, [search, genre, platform, ordering]);
+    }, [search, genre, platform, ordering, page]);
 
     if (loading) {
         return (
@@ -108,6 +119,28 @@ const Home = () => {
                         <GameCard key={game.id} game={game} />
                     ))}
                 </div>
+
+                {totalPages > 1 && (
+                    <div className={styles.pagination}>
+                        <button
+                            onClick={() => setPage(p => p - 1)}
+                            disabled={page === 1}
+                            className={styles.paginationButton}
+                        >
+                            Previous
+                        </button>
+                        <span className={styles.pageInfo}>
+                            Page {page} of {totalPages}
+                        </span>
+                        <button
+                            onClick={() => setPage(p => p + 1)}
+                            disabled={page >= totalPages}
+                            className={styles.paginationButton}
+                        >
+                            Next
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )
