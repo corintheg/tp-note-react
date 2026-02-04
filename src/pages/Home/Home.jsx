@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import GameCard from "../../components/GameCard/GameCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import GameFilters from "../../components/GameFilters/GameFilters";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -8,14 +9,26 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [search, setSearch] = useState("");
+    const [genre, setGenre] = useState("");
+    const [platform, setPlatform] = useState("");
+    const [ordering, setOrdering] = useState("-added");
 
     const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
-    const fetchGames = async (searchTerm = "") => {
+    const fetchGames = async () => {
         try {
             setLoading(true);
-            const searchParam = searchTerm ? `&search=${searchTerm}` : "";
-            const API = `https://api.rawg.io/api/games?key=${API_KEY}&ordering=-added${searchParam}`;
+
+            const params = new URLSearchParams({
+                key: API_KEY,
+                ordering: ordering
+            });
+
+            if (search) params.append('search', search);
+            if (genre) params.append('genres', genre);
+            if (platform) params.append('platforms', platform);
+
+            const API = `https://api.rawg.io/api/games?${params.toString()}`;
 
             console.log('Fetching from:', API);
             const res = await fetch(API);
@@ -39,16 +52,12 @@ const Home = () => {
     };
 
     useEffect(() => {
-        fetchGames();
-    },[]);
-
-    useEffect(() => {
         const timer = setTimeout(() => {
-            fetchGames(search);
+            fetchGames();
         }, 500);
 
         return () => clearTimeout(timer);
-    }, [search]);
+    }, [search, genre, platform, ordering]);
 
     if (loading) {
         return (
@@ -76,7 +85,17 @@ const Home = () => {
                     Les jeux les plus populaires du moment
                 </p>
 
+
                 <SearchBar search={search} setSearch={setSearch} />
+
+                <GameFilters
+                    genre={genre}
+                    setGenre={setGenre}
+                    platform={platform}
+                    setPlatform={setPlatform}
+                    ordering={ordering}
+                    setOrdering={setOrdering}
+                />
 
                 {games.length === 0 && search && !loading && (
                     <div className={styles.noResults}>

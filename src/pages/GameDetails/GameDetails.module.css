@@ -1,0 +1,207 @@
+.container {
+    min-height: 100vh;
+    padding-bottom: 3rem;
+}
+
+.backButton {
+    margin: 1.5rem 0 1rem 2rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: white;
+    color: #4a5568;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.backButton:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+.gameHeader {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background: #2d3748;
+}
+
+.headerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.headerOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 2rem;
+    color: white;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.star {
+    font-size: 1.5rem;
+}
+
+.content {
+    max-width: 1200px;
+    margin: -2rem auto 0;
+    padding: 0 2rem;
+}
+
+.mainInfo {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.infoCard {
+    text-align: center;
+    padding: 1.25rem;
+    background: #f7fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    color: #718096;
+}
+
+.value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #2d3748;
+}
+
+.section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.section:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 1rem;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #f7fafc;
+    color: #4a5568;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+}
+
+.description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #4a5568;
+}
+
+.description p {
+    margin-bottom: 1rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.screenshot {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.screenshot:hover {
+    transform: scale(1.05);
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+.loading span {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+.errorMsg {
+    color: #e53e3e;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #feb2b2;
+}

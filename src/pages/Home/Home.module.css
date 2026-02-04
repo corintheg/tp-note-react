@@ -12,6 +12,8 @@
     text-align: center;
     margin-bottom: 0.5rem;
     color: #1a202c;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .pageSubtitle {
